@@ -1,0 +1,238 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	
+	<artifactId>app-rtkafka</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>app-rtkafka</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+		<!-- begin clod -->
+<!-- 		<dependency>
+          <groupId>org.apache.kafka</groupId>
+          <artifactId>kafka_2.11</artifactId>
+          <version>0.10.1.0</version>
+        </dependency> -->
+       
+       <dependency>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<version>3.0</version>
+		</dependency>
+	 	
+	 	<dependency>
+			<groupId>org.apache.spark</groupId>
+			<artifactId>spark-sql_2.11</artifactId>
+			<version>2.3.1</version>
+		</dependency> 
+	
+		<dependency>
+	        <groupId>org.apache.spark</groupId>
+	        <artifactId>spark-sql-kafka-0-10_2.11</artifactId>
+	        <version>2.3.1</version>
+	    </dependency> 
+		
+		<dependency>
+		    <groupId>org.apache.spark</groupId>
+		    <artifactId>spark-core_2.12</artifactId>
+		    <version>2.4.0</version>
+   			<scope>runtime</scope>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.apache.spark</groupId>
+		    <artifactId>spark-streaming_2.12</artifactId>
+		    <version>2.4.0</version>
+		    <scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.spark</groupId>
+			<artifactId>spark-streaming-kafka-0-10_2.11</artifactId>
+			<version>2.3.1</version>
+		<exclusions>
+        <exclusion>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>*</artifactId>
+        </exclusion>
+  	    </exclusions>
+		</dependency> 
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-core</artifactId>
+		    <version>2.6.6</version>
+		</dependency>
+
+		
+		<dependency>
+    		<groupId>com.esotericsoftware.kryo</groupId>
+    		<artifactId>kryo</artifactId>
+    		<version>2.24.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>2.19.1</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-nop</artifactId>
+			<version>${slf4j-nop.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>clod</groupId>
+			<artifactId>common-db</artifactId>
+			<version>${common-db.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>clod</groupId>
+			<artifactId>clod-webapp</artifactId>
+			<version>${clod-webapp.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>clod</groupId>
+			<artifactId>common-data</artifactId>
+			<version>${common-data.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>clod</groupId>
+			<artifactId>common-seq</artifactId>
+			<version>${common-seq.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>clod</groupId>
+			<artifactId>cube-webserver</artifactId>
+			<version>${cube-webserver.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>clod</groupId>
+			<artifactId>app-0server</artifactId>
+			<version>${app-0server.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>clod</groupId>
+			<artifactId>app-ring-server</artifactId>
+			<version>${app-ring-server.version}</version>
+
+			<exclusions><!-- 恐怖的slf4j binding，這裏移除掉因為 dust 而來的 logback -->
+				<exclusion>
+					<groupId>ch.qos.logback</groupId>
+					<artifactId>logback-classic</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>log4j</groupId>
+					<artifactId>log4j</artifactId>
+				</exclusion>
+			</exclusions>
+
+		</dependency>
+
+		<dependency>
+			<groupId>clod</groupId>
+			<artifactId>common-html</artifactId>
+			<version>${common-html.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>clod</groupId>
+			<artifactId>clod-dc</artifactId>
+			<version>${clod-dc.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>clod</groupId>
+			<artifactId>apps-twquotecore</artifactId>
+			<version>${apps-twquotecore.version}</version>
+		</dependency>
+		
+		
+		<!-- end clod -->
+<!--         <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson-databind.version}</version>
+        </dependency> -->
+
+	</dependencies>
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin.version}</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<fork>true</fork>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>${maven-shade-plugin.version}</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<transformers>
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+									<mainClass>app.rtkafka.RtKafkaApp</mainClass>
+								</transformer>
+							</transformers>
+							<filters>
+								<filter>
+									<artifact>*:*</artifact>
+									<excludes>
+										<exclude>META-INF/*.SF</exclude>
+										<exclude>META-INF/*.DSA</exclude>
+										<exclude>META-INF/*.RSA</exclude>
+									</excludes>
+								</filter>
+							</filters>
+							<!-- Additional configuration. -->
+
+							<createDependencyReducedPom>false</createDependencyReducedPom>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+
+	<parent>
+		<groupId>clod</groupId>
+		<artifactId>root</artifactId>
+		<version>0.2-SNAPSHOT</version>
+		<relativePath>../../root/root</relativePath>
+	</parent>
+
+</project>
